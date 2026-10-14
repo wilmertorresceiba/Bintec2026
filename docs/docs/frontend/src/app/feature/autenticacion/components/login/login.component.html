@@ -1,0 +1,56 @@
+<main class="login">
+  <section class="login__tarjeta" aria-labelledby="login-titulo">
+    <header class="login__encabezado">
+      <span class="login__logo" aria-hidden="true">B</span>
+      <h1 id="login-titulo" class="login__titulo">{{ textos().titulo }}</h1>
+      <p class="login__subtitulo">{{ textos().subtitulo }}</p>
+    </header>
+
+    <app-stepper
+      class="login__stepper"
+      etiqueta="Pasos para iniciar sesión"
+      [pasos]="etiquetasPasos"
+      [activo]="textos().indice"
+    />
+
+    @switch (paso()) {
+      @case ('credenciales') {
+        <app-paso-credenciales
+          [cargando]="cargando()"
+          [error]="error()"
+          (enviado)="iniciarSesion($event)"
+        />
+      }
+      @case ('cajero') {
+        <app-paso-numerico
+          idCampo="clave-cajero"
+          etiqueta="Clave de cajero"
+          tipo="password"
+          autocompletar="off"
+          textoBoton="Continuar"
+          [longitud]="longitudCajero"
+          [valorDemo]="cajeroDemo"
+          [error]="error()"
+          (enviado)="recibirClaveCajero($event)"
+          (volver)="volverACredenciales()"
+        />
+      }
+      @default {
+        <app-paso-numerico
+          idCampo="codigo-seguridad"
+          etiqueta="Código de seguridad"
+          tipo="text"
+          autocompletar="one-time-code"
+          textoBoton="Verificar e ingresar"
+          textoCargando="Verificando…"
+          [longitud]="longitudCodigo"
+          [valorDemo]="codigoDemo"
+          [cargando]="cargando()"
+          [error]="error()"
+          (enviado)="verificar($event)"
+          (volver)="volverACajero()"
+        />
+      }
+    }
+  </section>
+</main>

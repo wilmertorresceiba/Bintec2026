@@ -1,0 +1,54 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.tabla-contenedor {
+  overflow-x: auto;
+  background-color: $color-fondo;
+  border: 1px solid $color-borde;
+  border-radius: $radio-lg;
+}
+
+.tabla {
+  width: 100%;
+  font-size: $texto-sm;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid $color-borde;
+  }
+
+  th {
+    font-weight: $grosor-semi-negrita;
+    color: $color-texto-secundario;
+    background-color: $color-fondo-claro;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: 0;
+  }
+
+  &__valor {
+    text-align: right;
+    white-space: nowrap;
+
+    &--abono {
+      color: $color-exito-texto;
+      font-weight: $grosor-semi-negrita;
+    }
+  }
+}
+
+.vacio {
+  padding: 2rem;
+  text-align: center;
+  color: $color-texto-secundario;
+  background-color: $color-fondo;
+  border: 1px dashed $color-borde;
+  border-radius: $radio-lg;
+}

@@ -1,0 +1,123 @@
+@use '../modules/var' as *;
+
+// Buttons
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: $grosor-regular;
+  color: $color-sobre-primario;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  font-size: $texto-md;
+  width: fit-content;
+  min-height: 2.75rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: $radio-sm;
+  padding: 0.375rem 0.75rem;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+
+  &.btn-primario {
+    background-color: $color-primario;
+    border-color: $color-primario;
+
+    &:hover {
+      background-color: $color-primario-hover;
+      border-color: $color-primario-hover;
+    }
+
+    &:active {
+      background-color: $color-primario-active;
+      border-color: $color-primario-active;
+    }
+  }
+
+  &.btn-secundario {
+    color: $color-sobre-secundario;
+    background-color: $color-secundario;
+    border-color: $color-secundario;
+
+    &:hover {
+      background-color: $color-secundario-hover;
+      border-color: $color-secundario-hover;
+    }
+
+    &:active {
+      background-color: $color-secundario-active;
+      border-color: $color-secundario-active;
+    }
+  }
+}
+// End Buttons
+
+// inputs
+input {
+  display: block;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.375rem 0.75rem;
+  font-size: $texto-md;
+  font-weight: $grosor-regular;
+  color: $color-texto-primario;
+  background-color: $color-fondo;
+  border: 1px solid $color-borde;
+  border-radius: $radio-sm;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &::placeholder {
+    color: $color-placeholder;
+    opacity: 1; // Para asegurar que se vea en todos los navegadores
+  }
+
+  &:focus {
+    border-color: $color-primario;
+    outline: none; // Elimina el contorno predeterminado
+    box-shadow: 0 0 0.2rem $color-primario-foco;
+  }
+
+  &:disabled {
+    background-color: $gris-200;
+    color: $gris-500;
+    border-color: $gris-400;
+    cursor: not-allowed;
+  }
+
+  // Estilo para errores
+  &.ng-invalid.ng-touched {
+    border-color: $color-peligro;
+    &:focus {
+      border-color: $color-peligro-hover;
+      box-shadow: 0 0 0.2rem $color-peligro-foco;
+    }
+  }
+}
+
+.input-error {
+  color: $color-peligro;
+  font-size: $texto-xs;
+  font-weight: $grosor-ligero;
+  margin-top: 0.25rem;
+}
+// End inputs
+// forms
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  label {
+    font-size: $texto-md;
+    font-weight: $grosor-regular;
+    color: $color-texto-primario;
+  }
+  label + input {
+    margin-top: 2px;
+  }
+}
+// End forms

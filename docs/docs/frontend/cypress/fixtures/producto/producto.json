@@ -1,0 +1,16 @@
+{
+  "productoValido": {
+    "title": "Mochila de senderismo",
+    "price": "25.00",
+    "description": "Descripción válida del producto de prueba para tests",
+    "image": "https://fakestoreapi.com/img/test.jpg",
+    "category": "electronics"
+  },
+  "productoInvalido": {
+    "title": "Ab",
+    "price": "0",
+    "description": "Corta",
+    "image": "url-invalida",
+    "category": ""
+  }
+}

@@ -1,0 +1,65 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.aviso {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.75rem;
+  background-color: $color-primario-suave;
+  border-radius: $radio-md;
+
+  &__marca {
+    flex: none;
+    width: 0.625rem;
+    height: 0.625rem;
+    margin-top: 0.375rem;
+    background-color: $color-primario;
+    border-radius: $radio-pill;
+  }
+
+  &__cuerpo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  &__titulo {
+    font-size: $texto-sm;
+    font-weight: $grosor-semi-negrita;
+    color: $color-texto-primario;
+  }
+
+  &__mensaje {
+    font-size: $texto-sm;
+    color: $color-texto-primario;
+  }
+
+  &__fecha {
+    font-size: $texto-xs;
+    color: $color-texto-secundario;
+  }
+
+  &__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  &__boton {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0 1rem;
+    font-size: $texto-sm;
+
+    &:focus-visible {
+      outline: 2px solid $color-texto-primario;
+      outline-offset: 2px;
+    }
+  }
+}

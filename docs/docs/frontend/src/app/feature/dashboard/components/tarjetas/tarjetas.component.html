@@ -1,0 +1,23 @@
+<main class="pagina">
+  <header class="pagina__encabezado">
+    <h1 class="titulo">Tarjetas de crédito</h1>
+    <p class="pagina__subtitulo">Cupo, pagos y fechas límite de tus tarjetas.</p>
+  </header>
+
+  <app-estado-datos
+    [cargando]="cargando()"
+    [error]="error()"
+    etiquetaCarga="Cargando tus tarjetas"
+    (reintentar)="cargar()"
+  >
+    @if (tarjetas().length === 0) {
+      <p class="vacio">Aún no tienes tarjetas de crédito con nosotros.</p>
+    } @else {
+      <div class="rejilla">
+        @for (tarjeta of tarjetas(); track tarjeta.id) {
+          <app-tarjeta-credito [tarjeta]="tarjeta" />
+        }
+      </div>
+    }
+  </app-estado-datos>
+</main>

@@ -1,0 +1,31 @@
+[project]
+name = "bintec-banca-api"
+version = "1.0.0"
+description = "API REST de la demo bancaria Bintec 2026 (FastAPI + SQLite, arquitectura hexagonal modular)"
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "--cov=app --cov-report=term-missing"
+
+[tool.coverage.report]
+fail_under = 80
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "S", "C90"]
+ignore = ["S101"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S105", "S106"]
+"app/seed.py" = ["S105", "S311"]
+"app/shared/config.py" = ["S105"]
+
+[tool.mypy]
+strict = true
+plugins = ["pydantic.mypy"]
+files = ["app"]

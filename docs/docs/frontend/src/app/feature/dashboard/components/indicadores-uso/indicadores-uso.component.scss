@@ -1,0 +1,30 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.indicadores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 1rem;
+  margin: 0;
+}
+
+.indicador {
+  padding: 0.75rem 1rem;
+  background-color: $color-fondo;
+  border: 1px solid $color-borde;
+  border-radius: $radio-lg;
+
+  dt {
+    font-size: $texto-xs;
+    color: $color-texto-secundario;
+  }
+
+  dd {
+    margin: 0.25rem 0 0;
+    font-size: $texto-md;
+    font-weight: $grosor-negrita;
+  }
+}

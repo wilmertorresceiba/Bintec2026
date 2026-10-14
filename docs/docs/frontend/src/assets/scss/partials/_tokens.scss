@@ -1,0 +1,76 @@
+// Design tokens (CSS custom properties)
+// Para re-tematizar la aplicación basta con cambiar --color-primario (color base).
+// Los estados hover/active/foco/oscuro se derivan automáticamente con color-mix().
+:root {
+  // Marca: color base amarillo
+  --color-primario: #fdda24;
+  --color-primario-hover: color-mix(in srgb, var(--color-primario) 88%, black);
+  --color-primario-active: color-mix(in srgb, var(--color-primario) 78%, black);
+  --color-primario-oscuro: color-mix(in srgb, var(--color-primario) 55%, black);
+  --color-primario-foco: color-mix(in srgb, var(--color-primario) 25%, transparent);
+  --color-primario-suave: color-mix(in srgb, var(--color-primario) 10%, white);
+  // Texto sobre fondo primario (oscuro: el amarillo no admite texto blanco)
+  --color-sobre-primario: #212529;
+  // Primario apto como texto/borde sobre fondos claros (contraste AA)
+  --color-primario-texto: color-mix(in srgb, var(--color-primario) 40%, black);
+  --color-sobre-secundario: #ffffff;
+
+  // Colores semánticos
+  --color-secundario: #495057;
+  --color-secundario-hover: color-mix(in srgb, var(--color-secundario) 88%, black);
+  --color-secundario-active: color-mix(in srgb, var(--color-secundario) 78%, black);
+  --color-exito: #28a745;
+  --color-exito-texto: #155724;
+  --color-exito-fondo: #d4edda;
+  --color-peligro: #dc3545;
+  --color-peligro-hover: color-mix(in srgb, var(--color-peligro) 88%, black);
+  --color-peligro-foco: color-mix(in srgb, var(--color-peligro) 25%, transparent);
+  --color-peligro-texto: #842029;
+  --color-peligro-fondo: #f8d7da;
+  --color-advertencia: #ffc107;
+  --color-informacion: #17a2b8;
+  --color-claro: #f8f9fa;
+  --color-oscuro: #343a40;
+
+  // Escala de grises
+  --gris-100: #f8f9fa;
+  --gris-200: #e9ecef;
+  --gris-300: #dee2e6;
+  --gris-400: #ced4da;
+  --gris-500: #adb5bd;
+  --gris-600: #6c757d;
+  --gris-700: #495057;
+  --gris-800: #343a40;
+  --gris-900: #212529;
+
+  // Texto, superficies y bordes
+  --color-texto-primario: #212529;
+  --color-texto-secundario: #6c757d;
+  --color-fondo: #ffffff;
+  --color-fondo-claro: #f1f3f5;
+  --color-fondo-medio: #e2e6ea;
+  --color-fondo-oscuro: #d1d6db;
+  --color-borde: #dee2e6;
+  --color-placeholder: #6c757d;
+
+  // Sombras
+  --sombra-clara: rgba(248, 249, 250, 0.5);
+  --sombra-oscura: rgba(52, 58, 64, 0.5);
+
+  // Radios
+  --radio-sm: 0.25rem;
+  --radio-md: 0.5rem;
+  --radio-lg: 0.75rem;
+  --radio-pill: 999px;
+
+  // Tarjetas de crédito por marca
+  --tarjeta-visa-inicio: var(--color-primario);
+  --tarjeta-visa-fin: color-mix(in srgb, var(--color-primario) 70%, black);
+  --tarjeta-visa-texto: var(--color-sobre-primario);
+  --tarjeta-mastercard-texto: #d5d9de;
+  --tarjeta-amex-texto: #d5d9de;
+  --tarjeta-mastercard-inicio: #343a40;
+  --tarjeta-mastercard-fin: #111418;
+  --tarjeta-amex-inicio: #0f8b8d;
+  --tarjeta-amex-fin: #0a4f50;
+}

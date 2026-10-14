@@ -1,0 +1,123 @@
+<figure class="grafica">
+  <svg
+    class="grafica__svg"
+    [attr.viewBox]="`0 0 ${ancho()} ${alto()}`"
+    preserveAspectRatio="xMidYMid meet"
+    [class.grafica__svg--con-activo]="activo() !== null"
+    role="group"
+    [attr.aria-label]="titulo()"
+  >
+    <defs>
+      <linearGradient id="grafica-degradado" x1="0" y1="0" x2="0" y2="1">
+        <stop class="grafica__degradado-inicio" offset="0%" />
+        <stop class="grafica__degradado-fin" offset="100%" />
+      </linearGradient>
+    </defs>
+
+    <!-- Líneas guía y valores del eje Y -->
+    @for (marca of marcas(); track marca.y) {
+      <line
+        class="grafica__guia"
+        [attr.x1]="margenIzq()"
+        [attr.x2]="ancho() - margenDer"
+        [attr.y1]="marca.y"
+        [attr.y2]="marca.y"
+      />
+      <text
+        class="grafica__texto grafica__texto--eje-y"
+        [attr.x]="margenIzq() - 8"
+        [attr.y]="marca.y"
+        dy="0.32em"
+      >
+        {{ marca.texto }}
+      </text>
+    }
+
+    <!-- Barras -->
+    @for (barra of barras(); track barra.id) {
+      <g
+        class="barra"
+        [class.barra--activa]="activo() === $index"
+        [class.barra--interactiva]="interactivo()"
+        [attr.role]="interactivo() ? 'button' : 'img'"
+        tabindex="0"
+        [attr.aria-label]="`${barra.etiqueta}: ${barra.detalle}`"
+        (mouseenter)="activar($index)"
+        (mouseleave)="activar(null)"
+        (focus)="activar($index)"
+        (blur)="activar(null)"
+        (click)="elegir(barra)"
+        (keydown.enter)="elegir(barra)"
+        (keydown.space)="elegir(barra); $event.preventDefault()"
+      >
+        <!-- Zona de impacto amplia para facilitar el hover/clic -->
+        <rect
+          class="barra__zona"
+          [attr.x]="barra.centroX - barra.ancho"
+          [attr.y]="0"
+          [attr.width]="barra.ancho * 2"
+          [attr.height]="ejeX()"
+        />
+        <!-- Pista de fondo: da ritmo visual y muestra los periodos sin consumo -->
+        <rect
+          class="barra__pista"
+          [attr.x]="barra.x"
+          [attr.y]="margenSup"
+          [attr.width]="barra.ancho"
+          [attr.height]="ejeX() - margenSup"
+          rx="6"
+        />
+        <rect
+          class="barra__relleno"
+          [attr.x]="barra.x"
+          [attr.y]="barra.y"
+          [attr.width]="barra.ancho"
+          [attr.height]="barra.alto"
+          rx="6"
+        />
+        @if (barra.esMaximo && !compacto()) {
+          <text
+            class="barra__valor"
+            [attr.x]="barra.centroX"
+            [attr.y]="barra.y - 8"
+            aria-hidden="true"
+          >
+            {{ barra.valorCompacto }}
+          </text>
+        }
+      </g>
+      @if (barra.mostrarEtiqueta) {
+        <text
+          class="grafica__texto grafica__texto--eje-x"
+          [attr.x]="barra.centroX"
+          [attr.y]="yEtiquetasX()"
+          dy="0.32em"
+        >
+          {{ barra.etiquetaCorta ?? barra.etiqueta }}
+        </text>
+      }
+    }
+
+    <line
+      class="grafica__eje"
+      [attr.x1]="margenIzq()"
+      [attr.x2]="ancho() - margenDer"
+      [attr.y1]="ejeX()"
+      [attr.y2]="ejeX()"
+    />
+
+    <!-- Tooltip -->
+    @if (tooltip(); as tip) {
+      <g class="tooltip" aria-hidden="true" [attr.transform]="`translate(${tip.x} ${tip.y})`">
+        <rect
+          class="tooltip__fondo"
+          [attr.width]="anchoTooltip()"
+          [attr.height]="altoTooltip"
+          rx="6"
+        />
+        <text class="tooltip__titulo" x="10" y="17">{{ tip.barra.etiqueta }}</text>
+        <text class="tooltip__detalle" x="10" y="34">{{ tip.barra.detalle }}</text>
+      </g>
+    }
+  </svg>
+</figure>

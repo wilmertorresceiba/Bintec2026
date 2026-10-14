@@ -1,0 +1,24 @@
+<dl class="indicadores">
+  <div class="indicador">
+    <dt>Total del periodo</dt>
+    <dd>{{ formatear(serie().total) }}</dd>
+  </div>
+  <div class="indicador">
+    <dt>Promedio por {{ promedioPor() }}</dt>
+    <dd>{{ formatear(serie().promedio) }}</dd>
+  </div>
+  <div class="indicador">
+    <dt>Mayor consumo</dt>
+    <dd>
+      @if (serie().maximo; as maximo) {
+        {{ maximo.etiqueta }} · {{ formatear(maximo.total) }}
+      } @else {
+        —
+      }
+    </dd>
+  </div>
+  <div class="indicador">
+    <dt>Cargos</dt>
+    <dd>{{ serie().transacciones }}</dd>
+  </div>
+</dl>

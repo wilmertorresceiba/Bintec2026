@@ -1,0 +1,24 @@
+<dl class="kpis">
+  <div class="kpi">
+    <dt>Deuda total</dt>
+    <dd class="kpi__valor">
+      {{ resumen().deudaTotal | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}
+    </dd>
+  </div>
+  <div class="kpi">
+    <dt>Cupo disponible en tarjetas</dt>
+    <dd class="kpi__valor kpi__valor--positivo">
+      {{ resumen().cupoDisponible | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}
+    </dd>
+  </div>
+  <div class="kpi">
+    <dt>Pago mensual estimado</dt>
+    <dd class="kpi__valor">
+      {{ resumen().pagoMensualEstimado | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}
+    </dd>
+  </div>
+  <div class="kpi">
+    <dt>Próximo vencimiento</dt>
+    <dd class="kpi__valor">{{ resumen().proximoVencimiento | date: 'd MMM y' }}</dd>
+  </div>
+</dl>

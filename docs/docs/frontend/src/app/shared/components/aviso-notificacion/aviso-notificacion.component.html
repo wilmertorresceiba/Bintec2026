@@ -1,0 +1,17 @@
+<div class="aviso">
+  <span class="aviso__marca" aria-hidden="true"></span>
+  <div class="aviso__cuerpo">
+    <span class="aviso__titulo">{{ notificacion().titulo }}</span>
+    <span class="aviso__mensaje">{{ notificacion().mensaje }}</span>
+    <span class="aviso__fecha">{{ notificacion().fecha | date: 'd MMM y' }}</span>
+    <div class="aviso__acciones">
+      <a
+        class="btn btn-primario aviso__boton"
+        [routerLink]="['/dashboard/oferta-credito', notificacion().id]"
+        (click)="detalleAbierto.emit()"
+      >
+        Ver detalle
+      </a>
+    </div>
+  </div>
+</div>

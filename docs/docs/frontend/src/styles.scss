@@ -1,0 +1,22 @@
+@use 'assets/scss/modules/var' as *;
+@use 'assets/scss/modules/mixins' as *;
+@use 'assets/scss/modules/utility';
+
+// Partials
+@use 'assets/scss/partials/tokens';
+@use 'assets/scss/partials/reset';
+@use 'assets/scss/partials/grids';
+@use 'assets/scss/partials/global';
+@use 'assets/scss/partials/typography';
+@use 'assets/scss/partials/table';
+
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background-color: $color-fondo;
+  min-height: 100dvh;
+}

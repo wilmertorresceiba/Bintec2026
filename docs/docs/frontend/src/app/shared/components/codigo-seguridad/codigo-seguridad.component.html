@@ -1,0 +1,44 @@
+<section
+  class="codigo"
+  [class.codigo--urgente]="urgente()"
+  aria-label="Código de seguridad"
+  aria-describedby="ayuda-codigo"
+  [attr.title]="textoAyuda"
+>
+  <span id="ayuda-codigo" class="sr-only"> {{ textoAyuda }}. </span>
+  <div class="codigo__datos">
+    <span class="codigo__titulo">
+      <svg
+        class="codigo__escudo"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z" />
+        <path d="m9 12 2 2 4-4" />
+      </svg>
+      Código de seguridad
+    </span>
+    <strong class="codigo__valor" aria-label="Código vigente">{{ codigoFormateado() }}</strong>
+  </div>
+  <div class="codigo__tiempo" aria-hidden="true">
+    <svg class="codigo__anillo" viewBox="0 0 36 36" focusable="false">
+      <circle class="codigo__pista" cx="18" cy="18" r="16" pathLength="100" />
+      <circle
+        class="codigo__avance"
+        cx="18"
+        cy="18"
+        r="16"
+        pathLength="100"
+        [attr.stroke-dasharray]="`${porcentajeRestante()} 100`"
+      />
+    </svg>
+    <span class="codigo__segundos">{{ segundosRestantes() }}</span>
+  </div>
+  <span class="sr-only">Vence en {{ segundosRestantes() }} segundos</span>
+</section>

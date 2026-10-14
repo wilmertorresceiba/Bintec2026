@@ -1,0 +1,85 @@
+<nav class="navbar" [class.navbar--plegado]="plegado()" aria-label="Navegación principal">
+  <div class="navbar__cabecera">
+    <span class="navbar__marca">Bintec 2026 Ceiba Software</span>
+    <button
+      type="button"
+      class="navbar__plegar"
+      aria-controls="menu-principal"
+      [attr.aria-expanded]="!plegado()"
+      [attr.aria-label]="plegado() ? 'Desplegar menú' : 'Plegar menú'"
+      (click)="alternarPlegado.emit()"
+    >
+      <svg
+        class="navbar__icono-plegar"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        focusable="false"
+      >
+        @if (plegado()) {
+          <path d="M4 6h16M4 12h16M4 18h16" />
+        } @else {
+          <path d="m15 6-6 6 6 6" />
+        }
+      </svg>
+    </button>
+  </div>
+  <div id="menu-principal" class="navbar__cuerpo" [hidden]="plegado()">
+    <ul class="navbar__menu">
+      @for (elemento of elementosMenu(); track elemento.url) {
+        <li>
+          @if (elemento.hijos?.length) {
+            <button
+              type="button"
+              class="navbar__grupo"
+              [attr.aria-expanded]="estaAbierto(elemento)"
+              [attr.aria-controls]="`submenu-${elemento.nombre}`"
+              (click)="alternar(elemento)"
+            >
+              {{ elemento.nombre }}
+              <span class="navbar__flecha" aria-hidden="true">{{
+                estaAbierto(elemento) ? '▾' : '▸'
+              }}</span>
+            </button>
+            @if (estaAbierto(elemento)) {
+              <ul class="navbar__submenu" [id]="`submenu-${elemento.nombre}`">
+                @for (hijo of elemento.hijos; track hijo.url) {
+                  <li>
+                    <a
+                      class="navbar__elemento navbar__elemento--hijo"
+                      [routerLink]="hijo.url"
+                      routerLinkActive="active"
+                      [routerLinkActiveOptions]="{ exact: hijo.opciones.rutaActivaExacta }"
+                    >
+                      {{ hijo.nombre }}
+                    </a>
+                  </li>
+                }
+              </ul>
+            }
+          } @else {
+            <a
+              class="navbar__elemento"
+              [routerLink]="elemento.url"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: elemento.opciones.rutaActivaExacta }"
+            >
+              {{ elemento.nombre }}
+            </a>
+          }
+        </li>
+      }
+    </ul>
+    @if (nombreUsuario()) {
+      <div class="navbar__usuario">
+        <button type="button" class="navbar__salir" (click)="cerrarSesion.emit()">
+          Cerrar sesión
+        </button>
+      </div>
+    }
+  </div>
+</nav>

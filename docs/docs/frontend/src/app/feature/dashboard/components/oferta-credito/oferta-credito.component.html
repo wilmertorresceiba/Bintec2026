@@ -1,0 +1,39 @@
+<main class="pagina">
+  <header class="pagina__encabezado">
+    <h1 class="titulo">Crédito preaprobado</h1>
+    <p class="pagina__subtitulo">Revisa las condiciones y decide si quieres tomarlo.</p>
+  </header>
+
+  <app-estado-datos
+    [cargando]="cargando()"
+    [error]="error()"
+    etiquetaCarga="Cargando tu oferta"
+    (reintentar)="cargar()"
+  >
+    @switch (vista()) {
+      @case ('noEncontrada') {
+        <p class="vacio">
+          No encontramos esta oferta. <a routerLink="/dashboard">Volver al inicio</a>
+        </p>
+      }
+      @case ('resuelta') {
+        <p class="vacio">
+          Esta oferta ya fue {{ estadoResuelta() }}.
+          <a routerLink="/dashboard">Volver al inicio</a>
+        </p>
+      }
+      @default {
+        @if (oferta(); as condiciones) {
+          <div class="contenido">
+            <app-terminos-oferta [oferta]="condiciones" />
+            @if (chatActivo()) {
+              <app-webchat (cerrado)="cerrarChat()" />
+            } @else {
+              <app-acciones-oferta (aceptada)="activarChat()" />
+            }
+          </div>
+        }
+      }
+    }
+  </app-estado-datos>
+</main>

@@ -1,0 +1,9 @@
+<progress
+  class="barra"
+  [class.barra--alerta]="alerta()"
+  max="100"
+  [value]="valorAcotado()"
+  [attr.aria-label]="etiqueta()"
+>
+  {{ valorAcotado() }}%
+</progress>

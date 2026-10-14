@@ -1,0 +1,20 @@
+<section class="terminos" aria-labelledby="titulo-terminos">
+  <h2 id="titulo-terminos" class="terminos__titulo">Crédito de libre inversión</h2>
+
+  <dl class="terminos__lista">
+    @for (fila of filas(); track fila.titulo) {
+      <div class="termino" [class.termino--destacada]="fila.destacada">
+        <dt>{{ fila.titulo }}</dt>
+        <dd>{{ fila.valor }}</dd>
+      </div>
+    }
+    <div class="termino">
+      <dt>Tasa mensual</dt>
+      <dd>{{ oferta().tasaMensual | number: '1.2-2' }} %</dd>
+    </div>
+    <div class="termino">
+      <dt>Primera cuota</dt>
+      <dd>{{ oferta().fechaPrimeraCuota | date: 'd MMM y' }}</dd>
+    </div>
+  </dl>
+</section>

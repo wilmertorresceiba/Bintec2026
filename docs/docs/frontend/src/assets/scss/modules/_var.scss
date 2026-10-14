@@ -1,0 +1,81 @@
+// General var
+$fuente-general: 'Inter Tight', sans-serif;
+// Colores principales
+$color-primario: var(--color-primario);
+$color-secundario: var(--color-secundario);
+$color-exito: var(--color-exito);
+$color-peligro: var(--color-peligro);
+$color-advertencia: var(--color-advertencia);
+$color-informacion: var(--color-informacion);
+$color-claro: var(--color-claro);
+$color-oscuro: var(--color-oscuro);
+
+// Escala de grises
+$gris-100: var(--gris-100);
+$gris-200: var(--gris-200);
+$gris-300: var(--gris-300);
+$gris-400: var(--gris-400);
+$gris-500: var(--gris-500);
+$gris-600: var(--gris-600);
+$gris-700: var(--gris-700);
+$gris-800: var(--gris-800);
+$gris-900: var(--gris-900);
+// Colores de texto
+$color-texto-primario: var(--color-texto-primario);
+$color-texto-secundario: var(--color-texto-secundario);
+
+// Colores de sombra
+$sombra-clara: var(--sombra-clara);
+$sombra-oscura: var(--sombra-oscura);
+
+// Otros colores
+$color-fondo: var(--color-fondo);
+$color-borde: var(--color-borde);
+$color-fondo-claro: var(--color-fondo-claro);
+$color-fondo-medio: var(--color-fondo-medio);
+$color-fondo-oscuro: var(--color-fondo-oscuro);
+$color-placeholder: var(--color-placeholder);
+
+// Tokens derivados (estados, foco, radios)
+$color-primario-hover: var(--color-primario-hover);
+$color-primario-active: var(--color-primario-active);
+$color-primario-oscuro: var(--color-primario-oscuro);
+$color-primario-foco: var(--color-primario-foco);
+$color-primario-suave: var(--color-primario-suave);
+$color-sobre-primario: var(--color-sobre-primario);
+$color-primario-texto: var(--color-primario-texto);
+$color-sobre-secundario: var(--color-sobre-secundario);
+$color-secundario-hover: var(--color-secundario-hover);
+$color-secundario-active: var(--color-secundario-active);
+$color-peligro-hover: var(--color-peligro-hover);
+$color-peligro-foco: var(--color-peligro-foco);
+$color-exito-texto: var(--color-exito-texto);
+$color-exito-fondo: var(--color-exito-fondo);
+$color-peligro-texto: var(--color-peligro-texto);
+$color-peligro-fondo: var(--color-peligro-fondo);
+$radio-sm: var(--radio-sm);
+$radio-md: var(--radio-md);
+$radio-lg: var(--radio-lg);
+$radio-pill: var(--radio-pill);
+
+// Tamaños de texto
+$texto-xs: 0.75rem;
+$texto-sm: 0.875rem;
+$texto-md: 1rem;
+$texto-lg: 1.25rem;
+$texto-xl: 1.5rem;
+$texto-xxl: 2rem;
+
+// Grosor de texto
+$grosor-fino: 100;
+$grosor-ultraligero: 200;
+$grosor-ligero: 300;
+$grosor-regular: 400;
+$grosor-medio: 500;
+$grosor-semi-negrita: 600;
+$grosor-negrita: 700;
+$grosor-extra-negrita: 800;
+$grosor-bolder: 900;
+$grosor-negro: 950;
+
+// End general var

@@ -1,0 +1,29 @@
+<h1 class="titulo">Productos</h1>
+<div class="productos-grid">
+  @for (producto of productos(); track producto.id) {
+    <article class="producto-card">
+      <div class="producto-card__imagen-contenedor">
+        <img [src]="producto.image" [alt]="producto.title" class="producto-card__imagen" />
+      </div>
+      <div class="producto-card__contenido">
+        <span class="producto-card__categoria">{{ producto.category }}</span>
+        <h2 class="producto-card__titulo">{{ producto.title }}</h2>
+        <div class="producto-card__footer">
+          <span class="producto-card__precio">${{ producto.price }}</span>
+          <div class="producto-card__rating">
+            <span class="producto-card__rating-valor">★ {{ producto.rating.rate }}</span>
+            <span class="producto-card__rating-conteo">({{ producto.rating.count }})</span>
+          </div>
+        </div>
+        <div class="producto-card__acciones">
+          <a [routerLink]="['/producto/editar', producto.id]" class="btn btn-secundario">
+            Editar
+          </a>
+          <button type="button" class="btn btn-peligro" (click)="eliminarProducto(producto.id)">
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </article>
+  }
+</div>

@@ -1,0 +1,37 @@
+<form (submit)="$event.preventDefault(); enviar()" novalidate>
+  <div class="campo">
+    <label [for]="idCampo()">{{ etiqueta() }}</label>
+    <input
+      #campo
+      [id]="idCampo()"
+      [type]="tipo()"
+      [formControl]="valor"
+      inputmode="numeric"
+      [attr.maxlength]="longitud()"
+      [attr.autocomplete]="autocompletar()"
+      [placeholder]="`${longitud()} dígitos`"
+      appValidar
+      (input)="soloDigitos()"
+    />
+  </div>
+
+  <p class="login__error" role="alert">{{ error() }}</p>
+
+  <button
+    type="submit"
+    class="btn btn-primario login__enviar"
+    [disabled]="cargando()"
+    [attr.aria-busy]="cargando()"
+  >
+    {{ cargando() ? textoCargando() : textoBoton() }}
+  </button>
+
+  @if (valorDemo()) {
+    <button type="button" class="login__enlace" (click)="usarCredencialesDemo()">
+      Autocompletar credenciales
+    </button>
+  }
+  <button type="button" class="login__enlace" [disabled]="cargando()" (click)="volver.emit()">
+    Volver
+  </button>
+</form>

@@ -1,0 +1,143 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.grafica {
+  margin: 0;
+
+  &__svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  &__degradado-inicio {
+    stop-color: $color-primario;
+  }
+
+  &__degradado-fin {
+    stop-color: $color-primario-hover;
+  }
+
+  &__guia {
+    stroke: $color-borde;
+    stroke-dasharray: 2 6;
+    stroke-linecap: round;
+    opacity: 0.8;
+  }
+
+  &__eje {
+    stroke: $gris-300;
+  }
+
+  &__texto {
+    font-family: $fuente-general;
+    font-size: 12px;
+    fill: $color-texto-secundario;
+
+    &--eje-y {
+      text-anchor: end;
+    }
+
+    &--eje-x {
+      text-anchor: middle;
+    }
+  }
+}
+
+.barra {
+  outline: none;
+
+  &__zona {
+    fill: transparent;
+  }
+
+  &__pista {
+    fill: $gris-100;
+    transition: fill 0.15s ease;
+  }
+
+  &__relleno {
+    fill: url('#grafica-degradado');
+    transform-box: fill-box;
+    transform-origin: bottom;
+    animation: crecer 0.5s ease-out both;
+    transition:
+      opacity 0.15s ease,
+      filter 0.15s ease;
+  }
+
+  &__valor {
+    font-family: $fuente-general;
+    font-size: 12px;
+    font-weight: $grosor-negrita;
+    text-anchor: middle;
+    fill: $color-texto-primario;
+    pointer-events: none;
+  }
+
+  &--interactiva {
+    cursor: pointer;
+  }
+
+  &--activa &__relleno,
+  &:focus-visible &__relleno {
+    filter: drop-shadow(0 0.25rem 0.375rem $sombra-oscura) saturate(1.1);
+  }
+
+  &--activa &__pista,
+  &:focus-visible &__pista {
+    fill: $gris-200;
+  }
+
+  &:focus-visible &__relleno {
+    stroke: $color-texto-primario;
+    stroke-width: 2;
+  }
+}
+
+// Al explorar una barra, las demás se atenúan para dar foco
+.grafica__svg--con-activo .barra:not(.barra--activa) .barra__relleno {
+  opacity: 0.45;
+}
+
+.tooltip {
+  pointer-events: none;
+
+  &__fondo {
+    fill: $color-texto-primario;
+  }
+
+  &__titulo {
+    font-family: $fuente-general;
+    font-size: 11px;
+    fill: $gris-400;
+  }
+
+  &__detalle {
+    font-family: $fuente-general;
+    font-size: 13px;
+    font-weight: $grosor-semi-negrita;
+    fill: $color-fondo;
+  }
+}
+
+@keyframes crecer {
+  from {
+    transform: scaleY(0);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .barra__relleno {
+    animation: none;
+    transition: none;
+  }
+}

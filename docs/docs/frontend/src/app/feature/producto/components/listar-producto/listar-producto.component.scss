@@ -1,0 +1,113 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.producto-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $color-borde;
+  border-radius: 0.5rem;
+  background-color: $color-fondo;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 0.25rem 0.75rem $sombra-oscura;
+  }
+
+  &__imagen-contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 12rem;
+    padding: 1rem;
+    background-color: $color-fondo-claro;
+  }
+
+  &__imagen {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  &__contenido {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+
+  &__categoria {
+    font-size: $texto-xs;
+    font-weight: $grosor-medio;
+    color: $color-texto-secundario;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__titulo {
+    font-size: $texto-sm;
+    font-weight: $grosor-semi-negrita;
+    color: $color-texto-primario;
+    line-height: 1.4;
+    flex: 1;
+    margin: 0;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid $color-borde;
+  }
+
+  &__precio {
+    font-size: $texto-lg;
+    font-weight: $grosor-negrita;
+    color: $color-primario-texto;
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  &__rating-valor {
+    font-size: $texto-sm;
+    font-weight: $grosor-medio;
+    color: $color-advertencia;
+  }
+
+  &__rating-conteo {
+    font-size: $texto-xs;
+    color: $color-texto-secundario;
+  }
+
+  &__acciones {
+    display: flex;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid $color-borde;
+    margin-top: 0.25rem;
+
+    a,
+    button {
+      flex: 1;
+      text-align: center;
+      font-size: $texto-xs;
+    }
+  }
+}

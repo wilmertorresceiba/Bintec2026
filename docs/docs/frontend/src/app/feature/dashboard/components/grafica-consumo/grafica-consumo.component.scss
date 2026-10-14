@@ -1,0 +1,49 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.tarjeta {
+  padding: 1rem 1.25rem 0.5rem;
+  background-color: $color-fondo;
+  border: 1px solid $color-borde;
+  border-radius: $radio-lg;
+  transition: opacity 0.2s ease;
+
+  &--actualizando {
+    opacity: 0.6;
+  }
+
+  &__cabecera {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  &__titulo {
+    margin: 0;
+    font-size: $texto-md;
+    font-weight: $grosor-semi-negrita;
+  }
+
+  &__ayuda {
+    margin: 0;
+    font-size: $texto-xs;
+    color: $color-texto-secundario;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.vacio {
+  padding: 3rem 1rem;
+  margin: 0;
+  text-align: center;
+  color: $color-texto-secundario;
+}

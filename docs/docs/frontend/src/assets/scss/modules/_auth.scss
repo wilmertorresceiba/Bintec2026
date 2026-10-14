@@ -1,0 +1,42 @@
+@use 'var' as *;
+
+// Estilos comunes a los pasos del login (error, botón principal y enlaces secundarios).
+@mixin formulario-auth {
+  :host {
+    display: block;
+  }
+
+  .login__error {
+    min-height: 1.25rem;
+    margin: 0;
+    font-size: $texto-sm;
+    color: $color-peligro;
+  }
+
+  .login__enviar {
+    width: 100%;
+    min-height: 2.75rem;
+
+    &:disabled {
+      cursor: progress;
+      opacity: 0.7;
+    }
+  }
+
+  .login__enlace {
+    align-self: center;
+    min-height: 2.75rem;
+    padding: 0;
+    font-size: $texto-sm;
+    color: $color-primario-texto;
+    text-decoration: underline;
+    cursor: pointer;
+    background: none;
+    border: 0;
+  }
+
+  button:focus-visible {
+    outline: 2px solid $color-primario;
+    outline-offset: 2px;
+  }
+}

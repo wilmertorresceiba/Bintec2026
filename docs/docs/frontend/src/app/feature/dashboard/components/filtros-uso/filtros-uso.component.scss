@@ -1,0 +1,58 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.segmentado {
+  display: inline-flex;
+  padding: 0.25rem;
+  background-color: $color-fondo-claro;
+  border-radius: $radio-md;
+
+  &__boton {
+    min-height: 2.75rem;
+    padding: 0 1rem;
+    font-size: $texto-sm;
+    font-weight: $grosor-semi-negrita;
+    color: $color-texto-primario;
+    cursor: pointer;
+    background: none;
+    border: 0;
+    border-radius: $radio-sm;
+
+    &[aria-pressed='true'] {
+      color: $color-sobre-primario;
+      background-color: $color-primario;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-texto-primario;
+      outline-offset: 2px;
+    }
+  }
+}
+
+.filtro {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: $texto-sm;
+
+  select {
+    min-height: 2.75rem;
+    padding: 0 0.75rem;
+    font-size: $texto-sm;
+    color: $color-texto-primario;
+    background-color: $color-fondo;
+    border: 1px solid $color-borde;
+    border-radius: $radio-sm;
+  }
+}

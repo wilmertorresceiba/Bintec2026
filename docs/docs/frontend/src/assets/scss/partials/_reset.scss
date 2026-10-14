@@ -1,0 +1,30 @@
+@use '../modules/var' as *;
+// Reset
+// La fuente se hereda desde body: así dt, dd, strong, td, th, small... no caen en la serif del navegador.
+body {
+  font-family: $fuente-general;
+}
+
+%all-transparent {
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+p,
+a,
+li,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+label,
+input,
+.btn,
+button,
+select {
+  font-family: $fuente-general;
+  color: $color-texto-primario;
+}
+// End reset

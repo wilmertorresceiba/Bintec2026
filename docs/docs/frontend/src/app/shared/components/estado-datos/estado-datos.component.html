@@ -1,0 +1,16 @@
+<div aria-live="polite">
+  @if (cargando()) {
+    <div class="esqueleto-lista" aria-busy="true" [attr.aria-label]="etiquetaCarga()">
+      @for (item of esqueletos; track item) {
+        <div class="esqueleto"></div>
+      }
+    </div>
+  } @else if (error()) {
+    <div class="estado-error" role="alert">
+      <p>No pudimos cargar tu información. Inténtalo de nuevo.</p>
+      <button type="button" class="btn btn-primario" (click)="reintentar.emit()">Reintentar</button>
+    </div>
+  } @else {
+    <ng-content />
+  }
+</div>

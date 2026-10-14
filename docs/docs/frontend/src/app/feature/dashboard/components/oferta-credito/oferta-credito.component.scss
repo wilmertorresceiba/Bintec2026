@@ -1,0 +1,52 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.pagina {
+  display: block;
+  padding: 0.5rem 0 3rem;
+
+  &__encabezado {
+    margin-bottom: 1.5rem;
+  }
+
+  &__subtitulo {
+    margin: 0.25rem 0 0;
+    color: $color-texto-secundario;
+  }
+}
+
+.contenido {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 48rem;
+}
+
+.resultado {
+  max-width: 36rem;
+  padding: 1.5rem;
+  background-color: $color-exito-fondo;
+  border-radius: $radio-lg;
+
+  &__titulo {
+    margin: 0 0 0.5rem;
+    font-size: $texto-lg;
+    font-weight: $grosor-semi-negrita;
+    color: $color-exito-texto;
+  }
+
+  p {
+    margin: 0 0 1rem;
+  }
+}
+
+.vacio {
+  padding: 2rem;
+  text-align: center;
+  color: $color-texto-secundario;
+  background-color: $color-fondo;
+  border: 1px dashed $color-borde;
+  border-radius: $radio-lg;
+}

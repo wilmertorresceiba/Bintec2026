@@ -1,0 +1,20 @@
+<header class="header">
+  <nav class="header__migas" aria-label="Ruta de navegación">
+    <ol class="migas">
+      @for (miga of migas(); track $index) {
+        <li class="migas__item">
+          @if ($last) {
+            <span class="migas__actual" aria-current="page">{{ miga.etiqueta }}</span>
+          } @else {
+            <a class="migas__enlace" [routerLink]="miga.url">{{ miga.etiqueta }}</a>
+          }
+        </li>
+      }
+    </ol>
+  </nav>
+
+  <div class="header__acciones">
+    <app-campana-notificaciones />
+    <app-codigo-seguridad />
+  </div>
+</header>

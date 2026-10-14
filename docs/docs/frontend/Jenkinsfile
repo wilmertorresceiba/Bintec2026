@@ -1,0 +1,89 @@
+@Library('ceiba-jenkins-library') _
+pipeline {
+    agent {
+        label 'Slave_Induccion'
+    }
+
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '3'))
+                disableConcurrentBuilds()
+    }
+
+    tools {
+         nodejs  'NodeJS20'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo "--------->Checkout<---------"
+                checkout scm
+            }
+        }
+        
+        stage('Install') {
+            steps {
+                echo "--------->Installing<---------"
+                sh 'node --version'
+                sh 'rm -rf node_modules package-lock.json'
+                sh 'npm install'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo "--------->Building<---------"
+                sh 'npm run build'
+            }
+        }
+        stage('Lint') {
+            steps {
+                echo "--------->lint<---------"
+                sh 'npm run lint'
+            }
+        }      
+
+        stage('Unit Test') {
+            steps {
+                echo "--------->Unit Testing<---------"
+                sh 'npm run test:ci'
+            }
+        }
+
+        stage('Component Test') {
+            steps {
+                echo "--------->Component Testing<---------"
+                sh 'npm run test:component'
+                sh 'npm run combine-reports'
+            }
+        }
+
+        stage('Static Code Analysis') {
+            steps {
+                sonarqubeMasQualityGatesP(sonarKey: 'co.com.ceiba.poc:app-base',
+                sonarName: 'app-base',
+                sonarPathProperties: './sonar-project.properties')
+            }
+        }   
+    }
+
+    post {
+        always {
+            echo 'This will always run'
+        }
+        success {
+            echo 'This will run only if successful'
+        }
+        failure {
+            echo 'This will run only if failed'
+            mail(to: 'nombre.apellido@ceiba.com.co', subject: "Failed Pipeline: ${currentBuild.fullDisplayName}", body: "Something is wrong with ${env.BUILD_URL}")
+        }
+        unstable {
+            echo 'This  will run only if the run was marked as unstable'
+        }
+        changed{
+            echo 'This will run only if the state of the Pipeline has changed'
+            echo 'For example, if the Pipeline was previously failing but is now successful'
+        }
+    }
+}

@@ -1,0 +1,43 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.terminos {
+  padding: 1.25rem;
+  background-color: $color-fondo;
+  border: 1px solid $color-borde;
+  border-radius: $radio-lg;
+
+  &__titulo {
+    margin: 0 0 1rem;
+    font-size: $texto-lg;
+    font-weight: $grosor-semi-negrita;
+  }
+
+  &__lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 1rem;
+    margin: 0;
+  }
+}
+
+.termino {
+  dt {
+    font-size: $texto-xs;
+    color: $color-texto-secundario;
+  }
+
+  dd {
+    margin: 0.25rem 0 0;
+    font-size: $texto-md;
+    font-weight: $grosor-semi-negrita;
+  }
+
+  &--destacada dd {
+    font-size: $texto-xl;
+    font-weight: $grosor-negrita;
+  }
+}

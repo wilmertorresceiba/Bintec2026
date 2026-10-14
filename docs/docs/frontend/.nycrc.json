@@ -1,0 +1,10 @@
+{
+  "reporter": [
+    "html",
+    "json",
+    "lcov",
+    "text-summary"
+  ],
+  "report-dir": "./coverage/components",
+  "temp-dir": "./.nyc_output"
+}

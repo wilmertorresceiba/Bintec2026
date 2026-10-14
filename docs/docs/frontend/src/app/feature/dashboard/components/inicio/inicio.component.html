@@ -1,0 +1,50 @@
+<main class="inicio">
+  <header class="inicio__encabezado">
+    <h1 class="titulo">Hola, {{ sesionService.usuario()?.nombre }}</h1>
+    <p class="inicio__subtitulo">Así ha sido el uso de tus tarjetas.</p>
+  </header>
+
+  @if (resumen(); as r) {
+    <app-resumen-financiero [resumen]="r" />
+  }
+
+  <section class="uso" aria-labelledby="titulo-uso">
+    <div class="uso__controles">
+      <h2 id="titulo-uso" class="uso__titulo">Uso de tus tarjetas</h2>
+      <app-filtros-uso
+        [periodo]="consulta().periodo"
+        [anio]="consulta().anio"
+        [mes]="consulta().mes"
+        [anios]="anios()"
+        (periodoCambiado)="cambiarPeriodo($event)"
+        (anioCambiado)="cambiarAnio($event)"
+        (mesCambiado)="cambiarMes($event)"
+      />
+    </div>
+
+    <app-estado-datos
+      [cargando]="cargando() && !serie()"
+      [error]="error()"
+      etiquetaCarga="Cargando el uso de tus tarjetas"
+      (reintentar)="reintentar()"
+    >
+      @if (serie(); as s) {
+        <div class="uso__bloques">
+          <app-indicadores-uso [serie]="s" [promedioPor]="promedioPor()" />
+          <app-grafica-consumo
+            [titulo]="tituloGrafica()"
+            [puntos]="puntos()"
+            [serie]="idSerie()"
+            [vacia]="sinConsumos()"
+            [interactiva]="interactiva()"
+            [actualizando]="cargando()"
+            (seleccionado)="profundizar($event)"
+          />
+          @if (s.porProducto.length) {
+            <app-consumo-productos [productos]="s.porProducto" />
+          }
+        </div>
+      }
+    </app-estado-datos>
+  </section>
+</main>

@@ -1,0 +1,58 @@
+@use 'var' as *;
+
+:host {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+}
+
+.login {
+  display: grid;
+  flex: 1;
+  place-items: center;
+  padding: 1rem;
+
+  &__tarjeta {
+    width: 100%;
+    max-width: 26rem;
+    padding: 2rem;
+    background-color: $color-fondo;
+    border: 1px solid $color-borde;
+    border-radius: $radio-lg;
+    box-shadow: 0 0.5rem 1.5rem $sombra-oscura;
+  }
+
+  &__encabezado {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  &__logo {
+    display: inline-grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    font-size: $texto-xl;
+    font-weight: $grosor-negrita;
+    color: $color-sobre-primario;
+    background-color: $color-primario;
+    border-radius: $radio-lg;
+  }
+
+  &__stepper {
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+
+  &__titulo {
+    margin: 0.75rem 0 0.25rem;
+    font-size: $texto-xl;
+    font-weight: $grosor-semi-negrita;
+  }
+
+  &__subtitulo {
+    margin: 0;
+    font-size: $texto-sm;
+    color: $color-texto-secundario;
+  }
+}

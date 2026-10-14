@@ -1,0 +1,46 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.esqueleto-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: 1rem;
+}
+
+.esqueleto {
+  height: 14rem;
+  background: linear-gradient(90deg, $gris-200 25%, $gris-100 50%, $gris-200 75%);
+  background-size: 200% 100%;
+  border-radius: $radio-lg;
+  animation: brillo 1.2s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+.estado-error {
+  padding: 2rem;
+  text-align: center;
+  background-color: $color-fondo;
+  border: 1px solid $color-peligro;
+  border-radius: $radio-lg;
+
+  p {
+    margin: 0 0 1rem;
+    color: $color-peligro;
+  }
+}
+
+@keyframes brillo {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
+  }
+}

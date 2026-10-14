@@ -1,0 +1,104 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.codigo {
+  --codigo-acento: #{$color-primario};
+
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 0.125rem 1.25rem;
+  background-color: $color-fondo;
+  border: 2px solid var(--codigo-acento);
+  border-radius: $radio-lg;
+  box-shadow: 0 0.25rem 1rem $sombra-clara;
+  transition: border-color 0.3s ease;
+
+  &--urgente {
+    --codigo-acento: #{$color-peligro};
+  }
+
+  &__datos {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__titulo {
+    display: inline-flex;
+    gap: 0.375rem;
+    align-items: center;
+    font-size: $texto-xs;
+    font-weight: $grosor-semi-negrita;
+    color: $color-texto-secundario;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  &__escudo {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  &__valor {
+    font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+    font-size: 2rem;
+    font-weight: $grosor-extra-negrita;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.15;
+    color: $color-texto-primario;
+    letter-spacing: 0.18em;
+  }
+
+  &__tiempo {
+    position: relative;
+    flex: none;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  &__anillo {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+
+  &__pista,
+  &__avance {
+    fill: none;
+    stroke-width: 3.5;
+  }
+
+  &__pista {
+    stroke: $gris-200;
+  }
+
+  &__avance {
+    stroke: var(--codigo-acento);
+    stroke-linecap: round;
+    transition:
+      stroke-dasharray 1s linear,
+      stroke 0.3s ease;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  &__segundos {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: $texto-sm;
+    font-weight: $grosor-negrita;
+    font-variant-numeric: tabular-nums;
+    color: $color-texto-primario;
+  }
+
+  &--urgente &__segundos {
+    color: $color-peligro-texto;
+  }
+}

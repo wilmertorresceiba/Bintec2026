@@ -1,0 +1,83 @@
+@use '../modules/var' as *;
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: $color-texto-primario;
+  background-color: $color-fondo;
+  border: 1px solid $color-borde;
+
+  th,
+  td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid $color-borde;
+  }
+
+  th {
+    font-weight: $grosor-medio;
+    background-color: $gris-700;
+    color: $color-fondo;
+    text-align: left;
+  }
+
+  tbody {
+    tr {
+      &:nth-of-type(odd) {
+        background-color: $color-fondo-claro;
+      }
+
+      &:hover {
+        background-color: $color-fondo-medio;
+      }
+    }
+  }
+
+  .table-hover tbody tr:hover {
+    color: $color-texto-primario;
+    background-color: $color-informacion;
+  }
+
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: $gris-100;
+  }
+
+  .table-dark {
+    background-color: $gris-900;
+
+    th,
+    td {
+      border-color: $gris-800;
+    }
+
+    th {
+      background-color: $gris-800;
+      color: $color-claro;
+    }
+
+    tbody tr {
+      &:nth-of-type(odd) {
+        background-color: $gris-800;
+      }
+
+      &:hover {
+        background-color: $gris-700;
+      }
+    }
+  }
+
+  .table-bordered {
+    border: 1px solid $color-borde;
+  }
+
+  .table-borderless th,
+  .table-borderless td {
+    border: 0;
+  }
+}
+
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}

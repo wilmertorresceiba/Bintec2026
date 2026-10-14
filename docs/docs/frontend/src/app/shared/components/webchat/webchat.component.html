@@ -1,0 +1,38 @@
+<section
+  #panel
+  class="webchat"
+  role="region"
+  tabindex="-1"
+  aria-labelledby="webchat-titulo"
+  (keydown.escape)="cerrar()"
+>
+  <header class="webchat__cabecera">
+    <div>
+      <h2 id="webchat-titulo" class="webchat__titulo">{{ titulo() }}</h2>
+      <p class="webchat__estado">
+        <span class="webchat__punto" aria-hidden="true"></span>
+        Chat activado
+      </p>
+    </div>
+    <button type="button" class="webchat__cerrar" aria-label="Cerrar chat" (click)="cerrar()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </header>
+
+  <div class="webchat__mensajes" role="log" aria-live="polite" aria-label="Conversación">
+    <p class="webchat__vacio">El chat está activo. Aquí aparecerá la conversación.</p>
+  </div>
+
+  <form class="webchat__entrada" (submit)="$event.preventDefault()">
+    <label class="sr-only" for="webchat-mensaje">Escribe tu mensaje</label>
+    <input
+      id="webchat-mensaje"
+      class="webchat__campo"
+      type="text"
+      autocomplete="off"
+      placeholder="Escribe tu mensaje…"
+      disabled
+    />
+    <button type="submit" class="btn btn-primario webchat__enviar" disabled>Enviar</button>
+  </form>
+</section>

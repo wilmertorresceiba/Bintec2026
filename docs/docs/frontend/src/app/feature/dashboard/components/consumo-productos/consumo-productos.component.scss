@@ -1,0 +1,35 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.productos {
+  &__titulo {
+    margin: 0 0 0.75rem;
+    font-size: $texto-md;
+    font-weight: $grosor-semi-negrita;
+  }
+
+  &__lista {
+    display: grid;
+    gap: 0.75rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__item {
+    padding: 0.75rem 1rem;
+    background-color: $color-fondo;
+    border: 1px solid $color-borde;
+    border-radius: $radio-lg;
+  }
+
+  &__fila {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: $texto-sm;
+  }
+}

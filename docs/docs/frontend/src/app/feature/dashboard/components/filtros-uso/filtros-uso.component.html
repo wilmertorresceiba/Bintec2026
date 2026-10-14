@@ -1,0 +1,38 @@
+<div class="filtros">
+  <div class="segmentado" role="group" aria-label="Agrupar consumo por">
+    @for (opcion of periodos; track opcion.valor) {
+      <button
+        type="button"
+        class="segmentado__boton"
+        [attr.aria-pressed]="periodo() === opcion.valor"
+        (click)="periodoCambiado.emit(opcion.valor)"
+      >
+        {{ opcion.etiqueta }}
+      </button>
+    }
+  </div>
+
+  @if (periodo() !== 'anio') {
+    <div class="filtro">
+      <label for="filtro-anio">Año</label>
+      <select id="filtro-anio" #selectorAnio (change)="anioCambiado.emit(+selectorAnio.value)">
+        @for (opcion of anios(); track opcion) {
+          <option [value]="opcion" [selected]="opcion === anio()">{{ opcion }}</option>
+        }
+      </select>
+    </div>
+  }
+
+  @if (periodo() === 'dia') {
+    <div class="filtro">
+      <label for="filtro-mes">Mes</label>
+      <select id="filtro-mes" #selectorMes (change)="mesCambiado.emit(+selectorMes.value)">
+        @for (nombre of meses; track nombre) {
+          <option [value]="$index + desfaseMes" [selected]="$index + desfaseMes === mes()">
+            {{ nombre }}
+          </option>
+        }
+      </select>
+    </div>
+  }
+</div>

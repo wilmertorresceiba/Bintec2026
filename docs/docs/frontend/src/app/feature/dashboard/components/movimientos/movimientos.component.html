@@ -1,0 +1,33 @@
+@if (movimientos().length === 0) {
+  <p class="vacio">
+    Aún no tienes movimientos recientes. Cuando uses tus productos los verás aquí.
+  </p>
+} @else {
+  <div class="tabla-contenedor">
+    <table class="tabla">
+      <caption class="sr-only">
+        Últimos movimientos de tus tarjetas y créditos
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Fecha</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Producto</th>
+          <th scope="col" class="tabla__valor">Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (movimiento of movimientos(); track movimiento.id) {
+          <tr>
+            <td>{{ movimiento.fecha | date: 'd MMM' }}</td>
+            <td>{{ movimiento.descripcion }}</td>
+            <td>{{ movimiento.producto }}</td>
+            <td class="tabla__valor" [class.tabla__valor--abono]="movimiento.valor > 0">
+              {{ movimiento.valor | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

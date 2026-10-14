@@ -1,0 +1,13 @@
+@use '../../../../../assets/scss/modules/var' as *;
+:host {
+  display: block;
+}
+
+.titulo-inicio {
+  display: flex;
+  align-items: center;
+  &__logo-angular {
+    max-width: 200px;
+    margin-left: 10px;
+  }
+}

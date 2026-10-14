@@ -1,0 +1,79 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.cr {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 1.25rem;
+  background-color: $color-fondo;
+  border: 1px solid $color-borde;
+  border-radius: $radio-lg;
+
+  &__encabezado {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  &__tipo {
+    margin: 0;
+    font-size: $texto-lg;
+    font-weight: $grosor-semi-negrita;
+  }
+
+  &__numero,
+  &__nota,
+  &__saldo-titulo {
+    margin: 0;
+    font-size: $texto-sm;
+    color: $color-texto-secundario;
+  }
+
+  &__saldo {
+    margin: 0;
+    font-size: $texto-xxl;
+    font-weight: $grosor-negrita;
+  }
+
+  &__datos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin: 0.5rem 0 0;
+    padding-top: 0.75rem;
+    border-top: 1px solid $color-borde;
+
+    dt {
+      font-size: $texto-xs;
+      color: $color-texto-secundario;
+    }
+
+    dd {
+      margin: 0;
+      font-size: $texto-sm;
+      font-weight: $grosor-semi-negrita;
+    }
+  }
+}
+
+.etiqueta {
+  padding: 0.125rem 0.625rem;
+  font-size: $texto-xs;
+  font-weight: $grosor-semi-negrita;
+  border-radius: $radio-pill;
+
+  &--ok {
+    color: $color-exito-texto;
+    background-color: $color-exito-fondo;
+  }
+
+  &--alerta {
+    color: $color-peligro-texto;
+    background-color: $color-peligro-fondo;
+  }
+}

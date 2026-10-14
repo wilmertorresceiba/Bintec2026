@@ -1,0 +1,92 @@
+@if (modoEdicion()) {
+  <h1 class="titulo">Editar producto</h1>
+} @else {
+  <h1 class="titulo">Crear producto</h1>
+}
+
+<form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+  <div class="campo">
+    <label for="title">Título</label>
+    <input
+      id="title"
+      type="text"
+      formControlName="title"
+      appValidar
+      placeholder="Nombre del producto"
+    />
+  </div>
+
+  <div class="campo">
+    <label for="price">Precio (USD)</label>
+    <input
+      id="price"
+      type="number"
+      formControlName="price"
+      appValidar
+      placeholder="0.00"
+      step="0.01"
+    />
+  </div>
+
+  <div class="campo">
+    <label for="description">Descripción</label>
+    <input
+      id="description"
+      type="text"
+      formControlName="description"
+      appValidar
+      placeholder="Descripción del producto"
+    />
+  </div>
+
+  <div class="campo">
+    <label for="image">Imagen (URL)</label>
+    <input id="image" type="text" formControlName="image" appValidar placeholder="https://..." />
+  </div>
+
+  <div class="campo">
+    <label for="category">Categoría</label>
+    <select id="category" formControlName="category" appValidar>
+      <option value="">-- Selecciona una categoría --</option>
+      @for (categoria of categorias; track categoria) {
+        <option [value]="categoria">{{ categoria }}</option>
+      }
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primario" [disabled]="cargando()">
+    @if (cargando()) {
+      Guardando...
+    } @else if (modoEdicion()) {
+      Actualizar producto
+    } @else {
+      Crear producto
+    }
+  </button>
+</form>
+
+@if (respuesta()) {
+  <div class="resultado">
+    @if (modoEdicion()) {
+      <h2 class="resultado__titulo">Producto actualizado</h2>
+      <p class="resultado__descripcion">
+        Producto con ID <strong>{{ respuesta()!.id }}</strong> actualizado correctamente.
+      </p>
+    } @else {
+      <h2 class="resultado__titulo">Producto creado</h2>
+      <p class="resultado__descripcion">
+        La API asignó el ID <strong>{{ respuesta()!.id }}</strong> al nuevo producto.
+      </p>
+    }
+    <dl class="resultado__detalle">
+      <dt>Título</dt>
+      <dd>{{ respuesta()!.title }}</dd>
+      <dt>Precio</dt>
+      <dd>${{ respuesta()!.price }}</dd>
+      <dt>Categoría</dt>
+      <dd>{{ respuesta()!.category }}</dd>
+      <dt>Imagen</dt>
+      <dd>{{ respuesta()!.image }}</dd>
+    </dl>
+  </div>
+}

@@ -1,0 +1,15 @@
+{
+  "model": "ceiba-complejidad-1-10",
+  "score": 4,
+  "scale": "1-10",
+  "level": "MEDIA",
+  "dimensions": {
+    "arquitectura_componentes": 3,
+    "infraestructura": 2,
+    "arquitectura_interna": 7,
+    "integraciones_externas": 1
+  },
+  "weights": { "arquitectura_componentes": 0.30, "infraestructura": 0.20, "arquitectura_interna": 0.30, "integraciones_externas": 0.20 },
+  "date": "2026-10-12",
+  "version": "1.0.0"
+}

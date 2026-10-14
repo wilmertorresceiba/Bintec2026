@@ -1,0 +1,47 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.barra {
+  display: block;
+  width: 100%;
+  height: 0.5rem;
+  overflow: hidden;
+  appearance: none;
+  background-color: $gris-200;
+  border: 0;
+  border-radius: $radio-pill;
+
+  &::-webkit-progress-bar {
+    background-color: $gris-200;
+  }
+
+  &::-webkit-progress-value {
+    background-color: $color-primario;
+    border-radius: $radio-pill;
+    transition: width 0.4s ease-out;
+  }
+
+  &::-moz-progress-bar {
+    background-color: $color-primario;
+    border-radius: $radio-pill;
+  }
+
+  &--alerta {
+    &::-webkit-progress-value {
+      background-color: $color-peligro;
+    }
+
+    &::-moz-progress-bar {
+      background-color: $color-peligro;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::-webkit-progress-value {
+      transition: none;
+    }
+  }
+}

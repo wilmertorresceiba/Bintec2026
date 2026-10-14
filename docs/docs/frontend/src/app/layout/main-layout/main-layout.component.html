@@ -1,0 +1,57 @@
+<div
+  class="layout"
+  [class.layout--con-sidebar]="sesionService.autenticado()"
+  [class.layout--plegado]="plegado()"
+>
+  @if (sesionService.autenticado()) {
+    <app-navbar
+      class="layout__sidebar"
+      [elementosMenu]="elementosMenu()"
+      [nombreUsuario]="sesionService.usuario()?.nombre ?? null"
+      [plegado]="plegado()"
+      (alternarPlegado)="alternarPlegado()"
+      (cerrarSesion)="cerrarSesion()"
+    />
+  }
+  @if (sesionService.autenticado() && !plegado()) {
+    <div class="layout__fondo" aria-hidden="true" (click)="alternarPlegado()"></div>
+  }
+  <div class="layout__contenido app-container">
+    @if (sesionService.autenticado()) {
+      @if (plegado()) {
+        <button
+          type="button"
+          class="layout__abrir"
+          aria-label="Desplegar menú"
+          (click)="alternarPlegado()"
+        >
+          <svg
+            class="layout__icono-abrir"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      }
+      <app-header />
+    }
+    <router-outlet />
+    <footer class="layout__pie">
+      <img
+        class="layout__logo"
+        src="assets/images/logo-ceiba-software.webp"
+        alt="Ceiba Software"
+        width="376"
+        height="125"
+        loading="lazy"
+      />
+      <small>© {{ anioActual }} Ceiba Software. Todos los derechos reservados.</small>
+    </footer>
+  </div>
+</div>

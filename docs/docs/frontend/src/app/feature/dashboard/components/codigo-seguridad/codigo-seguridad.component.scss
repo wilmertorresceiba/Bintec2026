@@ -1,0 +1,73 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.codigo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  color: $color-texto-primario;
+  background-color: $color-fondo;
+  border: 2px solid $color-primario;
+  border-radius: $radio-lg;
+  box-shadow: 0 0.5rem 1.5rem $sombra-oscura;
+
+  &__titulo {
+    margin: 0;
+    font-size: $texto-sm;
+    font-weight: $grosor-semi-negrita;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.9;
+  }
+
+  &__ayuda {
+    margin: 0.25rem 0 0;
+    font-size: $texto-xs;
+    opacity: 0.85;
+  }
+
+  &__valor {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: $grosor-extra-negrita;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+    letter-spacing: 0.25em;
+  }
+
+  &__tiempo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    min-width: 9rem;
+  }
+
+  &__barra {
+    height: 0.5rem;
+    overflow: hidden;
+    background-color: $gris-200;
+    border-radius: $radio-pill;
+  }
+
+  &__progreso {
+    height: 100%;
+    background-color: $color-primario;
+    transition: width 1s linear;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  &__segundos {
+    font-size: $texto-xs;
+    font-weight: $grosor-semi-negrita;
+    opacity: 0.9;
+  }
+}

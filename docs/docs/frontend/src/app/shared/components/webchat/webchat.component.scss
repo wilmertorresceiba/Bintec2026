@@ -1,0 +1,129 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.webchat {
+  display: flex;
+  flex-direction: column;
+  height: min(30rem, 75dvh);
+  overflow: hidden;
+  background-color: $color-fondo;
+  border: 1px solid $color-borde;
+  border-radius: $radio-lg;
+  box-shadow: 0 0.5rem 1.5rem $sombra-oscura;
+  animation: webchat-entrar 0.25s ease-out;
+
+  &:focus-visible {
+    outline: 2px solid $color-texto-primario;
+    outline-offset: 2px;
+  }
+
+  &__cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    color: #fff;
+    background-color: $color-primario;
+  }
+
+  &__titulo {
+    margin: 0;
+    font-size: $texto-md;
+    font-weight: $grosor-negrita;
+    color: #fff;
+  }
+
+  &__estado {
+    display: flex;
+    gap: 0.375rem;
+    align-items: center;
+    margin: 0;
+    font-size: $texto-xs;
+    color: #fff;
+  }
+
+  &__punto {
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: $color-exito;
+    border: 1px solid #fff;
+    border-radius: $radio-pill;
+  }
+
+  &__cerrar {
+    display: grid;
+    place-items: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    font-size: $texto-xl;
+    line-height: 1;
+    color: #fff;
+    cursor: pointer;
+    background: none;
+    border: 0;
+    border-radius: $radio-pill;
+
+    &:hover {
+      background-color: rgb(255 255 255 / 15%);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $gris-900;
+      outline-offset: -2px;
+    }
+  }
+
+  &__mensajes {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    background-color: $color-fondo-claro;
+  }
+
+  &__vacio {
+    margin: 0;
+    font-size: $texto-sm;
+    color: $color-texto-secundario;
+    text-align: center;
+  }
+
+  &__entrada {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border-top: 1px solid $color-borde;
+  }
+
+  &__campo {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__enviar:disabled,
+  &__campo:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+@keyframes webchat-entrar {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .webchat {
+    animation: none;
+  }
+}

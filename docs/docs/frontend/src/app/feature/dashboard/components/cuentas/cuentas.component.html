@@ -1,0 +1,23 @@
+<main class="pagina">
+  <header class="pagina__encabezado">
+    <h1 class="titulo">Cuentas de ahorro</h1>
+    <p class="pagina__subtitulo">Saldos, rendimientos y tasa de tus cuentas.</p>
+  </header>
+
+  <app-estado-datos
+    [cargando]="cargando()"
+    [error]="error()"
+    etiquetaCarga="Cargando tus cuentas"
+    (reintentar)="cargar()"
+  >
+    @if (cuentas().length === 0) {
+      <p class="vacio">Aún no tienes cuentas de ahorro con nosotros.</p>
+    } @else {
+      <div class="rejilla">
+        @for (cuenta of cuentas(); track cuenta.id) {
+          <app-cuenta-ahorro [cuenta]="cuenta" />
+        }
+      </div>
+    }
+  </app-estado-datos>
+</main>

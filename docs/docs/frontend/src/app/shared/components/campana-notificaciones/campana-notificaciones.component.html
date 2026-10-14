@@ -1,0 +1,41 @@
+<div class="campana">
+  <button
+    type="button"
+    class="campana__boton"
+    [class.campana__boton--nueva]="hayPendientes()"
+    aria-haspopup="true"
+    aria-controls="panel-notificaciones"
+    [attr.aria-expanded]="abierto()"
+    [attr.aria-label]="etiquetaBoton()"
+    (click)="alternar()"
+  >
+    <svg class="campana__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path
+        d="M12 3a6 6 0 0 0-6 6v3.2c0 .5-.2 1-.5 1.4L4 15.5V17h16v-1.5l-1.5-1.9c-.3-.4-.5-.9-.5-1.4V9a6 6 0 0 0-6-6Zm-2 16a2 2 0 0 0 4 0h-4Z"
+      />
+    </svg>
+    @if (hayPendientes()) {
+      <span class="campana__contador" aria-hidden="true">{{ servicio.pendientes() }}</span>
+    }
+  </button>
+
+  @if (abierto()) {
+    <section id="panel-notificaciones" class="panel" aria-label="Notificaciones">
+      <h2 class="panel__titulo">Notificaciones</h2>
+
+      @if (servicio.error()) {
+        <p class="panel__vacio" role="alert">No pudimos cargar tus notificaciones.</p>
+      } @else if (vacia()) {
+        <p class="panel__vacio">No tienes notificaciones por ahora.</p>
+      } @else {
+        <ul class="panel__lista">
+          @for (notificacion of servicio.notificaciones(); track notificacion.id) {
+            <li>
+              <app-aviso-notificacion [notificacion]="notificacion" (detalleAbierto)="cerrar()" />
+            </li>
+          }
+        </ul>
+      }
+    </section>
+  }
+</div>

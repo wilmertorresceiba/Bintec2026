@@ -1,0 +1,35 @@
+<article class="ca" [attr.aria-label]="etiquetaCuenta()">
+  <header class="ca__encabezado">
+    <div>
+      <h3 class="ca__tipo">{{ cuenta().tipo }}</h3>
+      <p class="ca__numero">Cuenta {{ cuenta().numero }}</p>
+    </div>
+    <span class="etiqueta" [class.etiqueta--ok]="activa()" [class.etiqueta--alerta]="!activa()">
+      {{ etiquetaEstado() }}
+    </span>
+  </header>
+
+  <p class="ca__saldo-titulo">Saldo disponible</p>
+  <p class="ca__saldo">
+    {{ cuenta().saldoDisponible | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}
+  </p>
+
+  <dl class="ca__datos">
+    <div>
+      <dt>Saldo total</dt>
+      <dd>{{ cuenta().saldoTotal | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</dd>
+    </div>
+    <div>
+      <dt>Rendimientos del mes</dt>
+      <dd>{{ cuenta().rendimientosMes | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</dd>
+    </div>
+    <div>
+      <dt>Tasa E.A.</dt>
+      <dd>{{ cuenta().tasaEfectivaAnual | number: '1.2-2' }} %</dd>
+    </div>
+    <div>
+      <dt>Apertura</dt>
+      <dd>{{ cuenta().fechaApertura | date: 'MMM y' }}</dd>
+    </div>
+  </dl>
+</article>

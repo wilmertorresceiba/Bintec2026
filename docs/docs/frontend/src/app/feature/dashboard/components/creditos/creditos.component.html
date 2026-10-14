@@ -1,0 +1,23 @@
+<main class="pagina">
+  <header class="pagina__encabezado">
+    <h1 class="titulo">Mis créditos</h1>
+    <p class="pagina__subtitulo">Saldo, cuotas y próximos pagos de tus créditos.</p>
+  </header>
+
+  <app-estado-datos
+    [cargando]="cargando()"
+    [error]="error()"
+    etiquetaCarga="Cargando tus créditos"
+    (reintentar)="cargar()"
+  >
+    @if (creditos().length === 0) {
+      <p class="vacio">Aún no tienes créditos con nosotros.</p>
+    } @else {
+      <div class="rejilla">
+        @for (credito of creditos(); track credito.id) {
+          <app-credito [credito]="credito" />
+        }
+      </div>
+    }
+  </app-estado-datos>
+</main>

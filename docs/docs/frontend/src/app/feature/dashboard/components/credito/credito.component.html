@@ -1,0 +1,37 @@
+<article class="cr" [attr.aria-label]="etiquetaArticulo()">
+  <header class="cr__encabezado">
+    <div>
+      <h3 class="cr__tipo">{{ credito().tipo }}</h3>
+      <p class="cr__numero">Crédito {{ credito().numero }}</p>
+    </div>
+    <span class="etiqueta" [class.etiqueta--alerta]="enMora()" [class.etiqueta--ok]="!enMora()">
+      {{ etiquetaEstado() }}
+    </span>
+  </header>
+
+  <p class="cr__saldo-titulo">Saldo a capital</p>
+  <p class="cr__saldo">
+    {{ credito().saldoCapital | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}
+  </p>
+
+  <app-barra-progreso [porcentaje]="porcentajePagado()" [etiqueta]="etiquetaProgreso()" />
+  <p class="cr__nota">
+    {{ credito().cuotasPagadas }} de {{ credito().cuotasTotales }} cuotas pagadas ·
+    {{ cuotasRestantes() }} restantes
+  </p>
+
+  <dl class="cr__datos">
+    <div>
+      <dt>Valor cuota</dt>
+      <dd>{{ credito().valorCuota | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</dd>
+    </div>
+    <div>
+      <dt>Próximo pago</dt>
+      <dd>{{ credito().proximoPago | date: 'd MMM y' }}</dd>
+    </div>
+    <div>
+      <dt>Tasa mensual</dt>
+      <dd>{{ credito().tasaMensual | number: '1.2-2' }} %</dd>
+    </div>
+  </dl>
+</article>

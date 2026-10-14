@@ -1,0 +1,66 @@
+<main class="pagina">
+  <header class="pagina__encabezado">
+    <h1 class="titulo">Reportes</h1>
+    <p class="pagina__subtitulo">
+      Consulta tus movimientos por fechas y tipo, y descárgalos en CSV.
+    </p>
+  </header>
+
+  <form class="filtros" [formGroup]="formulario" (ngSubmit)="consultar()" novalidate>
+    <div class="campo">
+      <label for="reporte-desde">Desde</label>
+      <input id="reporte-desde" type="date" formControlName="desde" />
+    </div>
+    <div class="campo">
+      <label for="reporte-hasta">Hasta</label>
+      <input id="reporte-hasta" type="date" formControlName="hasta" />
+    </div>
+    <div class="campo">
+      <label for="reporte-tipo">Tipo</label>
+      <select id="reporte-tipo" formControlName="tipo">
+        @for (tipo of tipos; track tipo.valor) {
+          <option [value]="tipo.valor">{{ tipo.etiqueta }}</option>
+        }
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primario filtros__consultar" [disabled]="cargando()">
+      Consultar
+    </button>
+  </form>
+
+  <p class="pagina__error" role="alert">{{ errorRango() }}</p>
+
+  <app-estado-datos
+    [cargando]="cargando()"
+    [error]="error()"
+    etiquetaCarga="Generando el reporte"
+    (reintentar)="consultar()"
+  >
+    <div class="resultado">
+      <dl class="totales">
+        <div>
+          <dt>Movimientos</dt>
+          <dd>{{ movimientos().length }}</dd>
+        </div>
+        <div>
+          <dt>Total cargos</dt>
+          <dd>{{ formatear(totalCargos()) }}</dd>
+        </div>
+        <div>
+          <dt>Total abonos</dt>
+          <dd>{{ formatear(totalAbonos()) }}</dd>
+        </div>
+      </dl>
+      <button
+        type="button"
+        class="btn btn-secundario"
+        [disabled]="movimientos().length === 0"
+        (click)="descargar()"
+      >
+        Descargar CSV
+      </button>
+    </div>
+
+    <app-movimientos [movimientos]="movimientos()" />
+  </app-estado-datos>
+</main>

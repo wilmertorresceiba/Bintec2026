@@ -1,0 +1,6 @@
+@use '../modules/var' as *;
+
+.titulo {
+  font-size: $texto-xxl;
+  font-weight: $grosor-medio;
+}

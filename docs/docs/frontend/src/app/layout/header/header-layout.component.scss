@@ -1,0 +1,75 @@
+@use 'var' as *;
+
+:host {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: block;
+  background-color: $color-fondo;
+}
+
+// En móvil el botón del menú queda fijo sobre la esquina izquierda
+@media (max-width: 768px) {
+  .header {
+    padding-left: 3.5rem;
+  }
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  border-bottom: 1px solid $color-borde;
+}
+
+.header__acciones {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.migas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+  font-size: $texto-sm;
+  list-style: none;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    // Separador entre migas
+    &:not(:last-child)::after {
+      color: $color-texto-secundario;
+      content: '/';
+    }
+  }
+
+  &__enlace {
+    display: inline-flex;
+    align-items: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    justify-content: center;
+    color: $color-primario-texto;
+    text-decoration: underline;
+
+    &:focus-visible {
+      outline: 2px solid $color-primario;
+      outline-offset: 2px;
+    }
+  }
+
+  &__actual {
+    font-weight: $grosor-semi-negrita;
+    color: $color-texto-primario;
+  }
+}

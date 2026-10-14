@@ -1,0 +1,95 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.stepper {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  &__item {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.375rem;
+    align-items: center;
+    text-align: center;
+
+    // Conector con el paso siguiente
+    &:not(:last-child)::after {
+      position: absolute;
+      top: 1rem;
+      left: calc(50% + 1.25rem);
+      width: calc(100% - 2.5rem);
+      height: 2px;
+      content: '';
+      background-color: $color-borde;
+      transition: background-color 0.3s ease;
+    }
+
+    &--completo:not(:last-child)::after {
+      background-color: $color-primario;
+    }
+  }
+
+  &__circulo {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    font-size: $texto-sm;
+    font-weight: $grosor-negrita;
+    color: $color-texto-secundario;
+    background-color: $color-fondo;
+    border: 2px solid $color-borde;
+    border-radius: $radio-pill;
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  &__item--activo &__circulo {
+    color: $color-sobre-primario;
+    background-color: $color-primario;
+    border-color: $color-primario;
+    box-shadow: 0 0 0 4px $color-primario-foco;
+  }
+
+  &__item--completo &__circulo {
+    color: $color-sobre-primario;
+    background-color: $color-primario;
+    border-color: $color-primario;
+  }
+
+  &__check {
+    width: 1rem;
+    height: 1rem;
+    fill: none;
+    stroke: currentcolor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3;
+  }
+
+  &__etiqueta {
+    font-size: $texto-xs;
+    line-height: 1.2;
+    color: $color-texto-secundario;
+  }
+
+  &__item--activo &__etiqueta {
+    font-weight: $grosor-semi-negrita;
+    color: $color-texto-primario;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__item::after,
+    &__circulo {
+      transition: none;
+    }
+  }
+}

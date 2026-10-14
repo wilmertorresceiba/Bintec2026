@@ -1,0 +1,36 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+  margin: 0;
+}
+
+.kpi {
+  padding: 0.5rem 0.875rem;
+  background-color: $color-fondo;
+  border: 1px solid $color-borde;
+  border-radius: $radio-lg;
+
+  dt {
+    font-family: $fuente-general;
+    font-size: $texto-sm;
+    color: $color-texto-secundario;
+  }
+
+  &__valor {
+    margin: 0;
+    font-family: $fuente-general;
+    font-size: $texto-lg;
+    font-weight: $grosor-negrita;
+
+    &--positivo {
+      color: $color-exito;
+    }
+  }
+}

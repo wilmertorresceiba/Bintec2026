@@ -1,0 +1,61 @@
+<article class="tc" [attr.aria-label]="etiquetaTarjeta()">
+  <div class="tc__plastico" [attr.data-marca]="tarjeta().marca" aria-hidden="true">
+    <div class="tc__superior">
+      <span class="tc__nombre">{{ tarjeta().nombre }}</span>
+      <svg
+        class="tc__contactless"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        focusable="false"
+      >
+        <path d="M8.5 8.5a5 5 0 0 1 0 7" />
+        <path d="M12 6a8.5 8.5 0 0 1 0 12" />
+        <path d="M15.5 3.5a12 12 0 0 1 0 17" />
+      </svg>
+    </div>
+    <span class="tc__chip"></span>
+    <span class="tc__numero">•••• •••• •••• {{ tarjeta().ultimosDigitos }}</span>
+    <div class="tc__inferior">
+      <span class="tc__titular">Titular de la tarjeta</span>
+      <span class="tc__marca">{{ tarjeta().marca }}</span>
+    </div>
+  </div>
+
+  <div class="tc__detalle">
+    <div class="tc__fila">
+      <span>Cupo utilizado</span>
+      <strong>{{ tarjeta().cupoUtilizado | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</strong>
+    </div>
+    <app-barra-progreso
+      [porcentaje]="porcentajeUso()"
+      [alerta]="usoAlto()"
+      [etiqueta]="etiquetaUso()"
+    />
+    <p class="tc__nota">
+      Disponible {{ cupoDisponible() | currency: 'COP' : 'symbol-narrow' : '1.0-0' }} de
+      {{ tarjeta().cupoTotal | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}
+    </p>
+
+    <div class="tc__fila">
+      <span>Pago mínimo</span>
+      <strong>{{ tarjeta().pagoMinimo | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</strong>
+    </div>
+    <div class="tc__fila">
+      <span>Fecha límite</span>
+      <strong>{{ tarjeta().fechaLimitePago | date: 'd MMM y' }}</strong>
+    </div>
+
+    <div class="tc__etiquetas">
+      <span class="etiqueta etiqueta--ok">{{ etiquetaEstado() }}</span>
+      @if (pagoUrgente()) {
+        <span class="etiqueta etiqueta--alerta">{{ textoVencimiento() }}</span>
+      }
+      @if (usoAlto()) {
+        <span class="etiqueta etiqueta--alerta">Uso alto del cupo</span>
+      }
+    </div>
+  </div>
+</article>

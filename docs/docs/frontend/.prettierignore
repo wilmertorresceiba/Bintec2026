@@ -1,0 +1,12 @@
+node_modules
+dist
+coverage
+.angular
+*.json
+!package.json
+!tsconfig*.json
+*.md
+!readme.md
+public
+mocks
+cypress/coverage.webpack.ts

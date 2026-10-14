@@ -1,0 +1,24 @@
+<div
+  class="tarjeta"
+  [class.tarjeta--actualizando]="actualizando()"
+  [attr.aria-busy]="actualizando()"
+>
+  <div class="tarjeta__cabecera">
+    <h3 class="tarjeta__titulo">{{ titulo() }}</h3>
+    @if (interactiva()) {
+      <p class="tarjeta__ayuda">Haz clic en una barra para ver el detalle.</p>
+    }
+  </div>
+
+  @if (vacia()) {
+    <p class="vacio">No hay consumos en este periodo. Cuando uses tus tarjetas, los verás aquí.</p>
+  } @else {
+    <app-grafica-barras
+      [puntos]="puntos()"
+      [titulo]="titulo()"
+      [serie]="serie()"
+      [interactivo]="interactiva()"
+      (seleccionado)="seleccionado.emit($event)"
+    />
+  }
+</div>

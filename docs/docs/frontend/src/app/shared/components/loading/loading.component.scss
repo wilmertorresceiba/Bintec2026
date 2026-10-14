@@ -1,0 +1,83 @@
+@use 'var' as *;
+
+:host {
+  --loading-diametro: 2.5rem;
+  --loading-grosor: 0.25rem;
+
+  display: block;
+
+  &[data-tamano='sm'] {
+    --loading-diametro: 1.25rem;
+    --loading-grosor: 0.1875rem;
+  }
+
+  &[data-tamano='lg'] {
+    --loading-diametro: 4rem;
+    --loading-grosor: 0.3125rem;
+  }
+
+  &[data-modo='inline'] {
+    display: inline-block;
+  }
+
+  &[data-modo='pantalla'] {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background-color: $color-fondo;
+    opacity: 0.92;
+  }
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  color: $color-texto-secundario;
+
+  &__spinner {
+    flex: none;
+    width: var(--loading-diametro);
+    height: var(--loading-diametro);
+    border: var(--loading-grosor) solid $gris-200;
+    border-top-color: $color-primario;
+    border-radius: 50%;
+    animation: loading-giro 0.8s linear infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation-duration: 2.4s;
+    }
+  }
+
+  &__mensaje {
+    font-size: $texto-sm;
+
+    &--oculto {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+  }
+}
+
+:host([data-modo='inline']) .loading {
+  flex-direction: row;
+  padding: 0;
+}
+
+:host([data-modo='pantalla']) .loading {
+  position: absolute;
+  inset: 0;
+}
+
+@keyframes loading-giro {
+  to {
+    transform: rotate(360deg);
+  }
+}

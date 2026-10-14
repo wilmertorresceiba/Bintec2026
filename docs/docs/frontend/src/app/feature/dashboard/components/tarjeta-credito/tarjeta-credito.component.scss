@@ -1,0 +1,166 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.tc {
+  height: 100%;
+  overflow: hidden;
+  background-color: $color-fondo;
+  border: 1px solid $color-borde;
+  border-radius: $radio-lg;
+
+  &__plastico {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    aspect-ratio: 1.586;
+    padding: 1.25rem 1.5rem;
+    overflow: hidden;
+    color: var(--tarjeta-visa-texto);
+    background: linear-gradient(135deg, var(--tarjeta-visa-inicio), var(--tarjeta-visa-fin));
+
+    // Brillo diagonal decorativo
+    &::before {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      content: '';
+      background: linear-gradient(
+        115deg,
+        transparent 35%,
+        rgb(255 255 255 / 18%) 48%,
+        transparent 60%
+      );
+    }
+
+    &[data-marca='MASTERCARD'] {
+      color: var(--tarjeta-mastercard-texto);
+      background: linear-gradient(
+        135deg,
+        var(--tarjeta-mastercard-inicio),
+        var(--tarjeta-mastercard-fin)
+      );
+    }
+
+    &[data-marca='AMEX'] {
+      color: var(--tarjeta-amex-texto);
+      background: linear-gradient(135deg, var(--tarjeta-amex-inicio), var(--tarjeta-amex-fin));
+    }
+
+    > * {
+      position: relative;
+      color: inherit;
+    }
+  }
+
+  &__superior,
+  &__inferior {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  // El reset global pinta los span con el color de texto principal; aquí se fuerza blanco
+  &__nombre,
+  &__titular,
+  &__marca {
+    color: #fff;
+  }
+
+  &__nombre {
+    font-size: $texto-sm;
+    font-weight: $grosor-semi-negrita;
+  }
+
+  &__contactless {
+    width: 1.75rem;
+    height: 1.75rem;
+    opacity: 0.85;
+  }
+
+  &__chip {
+    width: 2.75rem;
+    height: 2rem;
+    background:
+      linear-gradient(90deg, transparent 48%, rgb(0 0 0 / 25%) 50%, transparent 52%),
+      linear-gradient(0deg, transparent 48%, rgb(0 0 0 / 25%) 50%, transparent 52%),
+      linear-gradient(135deg, #f1d98a, #c9a23c);
+    border-radius: 0.375rem;
+  }
+
+  &__numero {
+    font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+    font-size: $texto-lg;
+    font-weight: $grosor-semi-negrita;
+    letter-spacing: 0.12em;
+    text-shadow: 0 1px 2px rgb(0 0 0 / 25%);
+  }
+
+  &__titular {
+    font-size: $texto-xs;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.85;
+  }
+
+  &__marca {
+    font-size: $texto-sm;
+    font-style: italic;
+    font-weight: $grosor-extra-negrita;
+    letter-spacing: 0.08em;
+  }
+
+  &__detalle {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.25rem;
+  }
+
+  &__fila {
+    display: flex;
+    justify-content: space-between;
+    font-size: $texto-sm;
+
+    span {
+      color: $color-texto-secundario;
+    }
+
+    strong {
+      font-family: inherit;
+      color: $color-texto-primario;
+    }
+  }
+
+  &__nota {
+    margin: 0;
+    font-size: $texto-xs;
+    color: $color-texto-secundario;
+  }
+
+  &__etiquetas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+.etiqueta {
+  padding: 0.125rem 0.625rem;
+  font-size: $texto-xs;
+  font-weight: $grosor-semi-negrita;
+  border-radius: $radio-pill;
+
+  &--ok {
+    color: $color-exito-texto;
+    background-color: $color-exito-fondo;
+  }
+
+  &--alerta {
+    color: $color-peligro-texto;
+    background-color: $color-peligro-fondo;
+  }
+}

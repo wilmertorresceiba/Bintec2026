@@ -1,0 +1,43 @@
+@use 'var' as *;
+
+:host {
+  display: block;
+}
+
+.inicio {
+  display: block;
+  padding: 0.5rem 0 3rem;
+
+  &__encabezado {
+    margin-bottom: 1.5rem;
+  }
+
+  &__subtitulo {
+    margin: 0.25rem 0 0;
+    color: $color-texto-secundario;
+  }
+}
+
+.uso {
+  margin-top: 2rem;
+
+  &__controles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  &__titulo {
+    margin: 0;
+    font-size: $texto-lg;
+    font-weight: $grosor-semi-negrita;
+  }
+
+  &__bloques {
+    display: grid;
+    gap: 1rem;
+  }
+}

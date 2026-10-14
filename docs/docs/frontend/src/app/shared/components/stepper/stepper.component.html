@@ -1,0 +1,22 @@
+<ol class="stepper" [attr.aria-label]="etiqueta()">
+  @for (item of items(); track item.numero) {
+    <li
+      class="stepper__item"
+      [class.stepper__item--completo]="item.estado === 'completo'"
+      [class.stepper__item--activo]="item.estado === 'activo'"
+      [attr.aria-current]="item.estado === 'activo' ? 'step' : null"
+    >
+      <span class="stepper__circulo" aria-hidden="true">
+        @if (item.estado === 'completo') {
+          <svg viewBox="0 0 24 24" class="stepper__check" focusable="false">
+            <path d="M5 12.5l4.5 4.5L19 7.5" />
+          </svg>
+        } @else {
+          {{ item.numero }}
+        }
+      </span>
+      <span class="stepper__etiqueta" aria-hidden="true">{{ item.etiqueta }}</span>
+      <span class="sr-only">{{ item.textoAccesible }}</span>
+    </li>
+  }
+</ol>

@@ -1,0 +1,14 @@
+<section class="productos" aria-labelledby="titulo-productos">
+  <h3 id="titulo-productos" class="productos__titulo">Consumo por tarjeta</h3>
+  <ul class="productos__lista">
+    @for (fila of filas(); track fila.producto) {
+      <li class="productos__item">
+        <div class="productos__fila">
+          <span>{{ fila.producto }}</span>
+          <strong>{{ fila.totalFormateado }}</strong>
+        </div>
+        <app-barra-progreso [porcentaje]="fila.porcentaje" [etiqueta]="fila.etiquetaProgreso" />
+      </li>
+    }
+  </ul>
+</section>
